@@ -1,0 +1,62 @@
+{
+    "events":[
+        {
+            "id":1,
+            "title": "Event 1",
+            "description":"description 1",
+            "category": "Sports",
+            "date":"April 25"
+        },
+        {
+            "id":2,
+            "title": "Event 2",
+            "description":"description 2",
+            "category": "technology",
+            "date":"May 25"
+        },
+        {
+            "id":3,
+            "title": "Event 3",
+            "description":"description 3",
+            "category": "food",
+            "date":"October 25"
+        }
+    ],
+    "dashboard":{
+        "posts":5,
+        "likes":100,
+        "followers": 20,
+        "following":10   
+    },
+
+    "news":[
+        {
+            "id":1,
+            "title":"News 1",
+            "description" : "Modi",
+            "category" : "sports"
+        },
+        {
+            "id":2,
+            "title":"News 2",
+            "description" : "Rahul",
+            "category" : "sports"
+        },
+        {
+            "id":3,
+            "title":"News 3",
+            "description" : "Sinha",
+            "category" : "vehicles"
+        }
+    ],
+    "Products":[
+        {
+            "id":1,
+            "title": "Prod1"
+        },
+        {
+            "id":2,
+            "title": "Prod2"
+        }
+    ] 
+}
