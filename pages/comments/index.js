@@ -1,57 +1,56 @@
 import { useState } from "react";
-export default function Comments() {
-  const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState("");
+import { comments } from "../../data/comments";
 
-  async function getComments() {
-    const response = await fetch("/api/comments");
-    const data = await response.json();
-    setComments(data);
-    console.log(data);
-  }
+export default function CommentsPage(){
+  const [comments, setComments] = useState([])
+  const [comment, setComment] = useState('')
+
+  async function fetchComments(){      
+      const response = await fetch(`/api/comments`);
+      const data = await response.json()
+      setComments(pv=>data);
+    }
 
   async function submitComment(){
     console.log(comment);
-        const response = await fetch('/api/comments', {            
-            method:'POST',
-            body:JSON.stringify({comment}),
-            header :{
-                'content-type': 'application/json',
-            }            
-        })
-        const data = await response.json();
-        console.log(data);
-    }
+     const response = await fetch('/api/comments', {
+      method:'POST',
+      body:JSON.stringify({comment}),
+      headers:{
+        'Content-Type': 'application/json',
+      },
+     })
 
-async function deleteComment(commentid){
+     const data = await response.json();
+     console.log(data);
+     fetchComments();
+  }
+
+   async function deleteComment(commentid){
+    console.log(commentid);
     const response = await fetch(`/api/comments/${commentid}`, {
-        method:"DELETE"
+      method:'DELETE',
     })
+    const data = await response.json();    
+    console.log(data);
+    fetchComments();
+   }
 
-    const data = await response.json();
-    getComments();
-}
-
-  return (
+  return(
     <>
-      <h1>Comments</h1>
-      {comments.map((comment) => (
+    <input type='text' value ={comment} onChange={(e)=>setComment(pv=>e.target.value)} />
+    <button onClick={submitComment}>Submit</button>
+    <div>
+    <button onClick = {fetchComments}>Load Comments</button>
+    {
+      comments.map(comment=>(
         <div key={comment.id}>
           <h1>{comment.text}</h1>
-          <button onClick={()=>deleteComment(comment.id)}>delete</button>
+          <button onClick={()=>deleteComment(comment.id)}>Delete</button>
         </div>
-      ))}
-
-      <button onClick={getComments}>get Comments</button>
-      <div>
-      <input
-        type="text"
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-      />
-      <button onClick={submitComment}>Submit</button>
-      </div>
-
+      ))
+    }
+    </div>
     </>
-  );
+  )
 }

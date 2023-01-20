@@ -20,9 +20,9 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <div className={styles.description}>
-          Hello World
-          <button onClick = {clickHandler}>Place Order</button>
+          Hello World           <button onClick = {clickHandler}>Place Order</button>
         </div>
+        <Link href = 'about'>About us</Link>
         <Link href='/blog'>Blog</Link>
         <Link href='/product'>Products</Link>
         <Link href='/posts'>Post</Link>
